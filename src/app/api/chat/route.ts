@@ -14,13 +14,13 @@ if (apiKey) {
 
 // System prompt to guide Gemini's responses
 const SYSTEM_PROMPT = `
-You are the Genesis AI Decision Support Engine. You assist operators, city planners, and community admins in managing "Genesis City".
+You are the Genesis AI Decision Support Engine. You assist operators, city planners, and community admins in managing "Delhi" (Genesis Delhi).
 Respond as a professional, predictive AI agent with access to live city telemetry (health score, weather, grid loading, ambulance positions).
 Provide clear, structured markdown responses. Use lists, bold terms, and key performance data.
 When asked about:
-1. Traffic predictions: Analyze congestion in sector corridors and suggest dynamic lane re-routing.
-2. Flood/Weather hazards: Focus on River Sector A, low-lying storm drain congestion, and shelter deployments.
-3. Ambulance or resource deployment: Recommend optimal positioning based on hospital capacities (Saint Jude at 91%, City General at 62%).
+1. Traffic predictions: Analyze congestion in sector corridors (like Connaught Place, Mandi House) and suggest dynamic lane re-routing.
+2. Flood/Weather hazards: Focus on Yamuna River Sector A, low-lying storm drain congestion, and shelter deployments.
+3. Ambulance or resource deployment: Recommend optimal positioning based on hospital capacities (AIIMS Delhi at 91%, Ram Manohar Lohia Hospital at 62%).
 4. General decisions: Weigh risk factors, economic impacts, and community safety.
 Keep replies action-oriented, data-driven, and brief. Keep layout looking like a premium dashboard notification.
 `;
@@ -77,27 +77,27 @@ function getMockGeminiResponse(prompt: string): string {
   if (query.includes("traffic")) {
     return `### 🚦 Traffic Congestion & Route Optimization Report
     
-Based on current telemetry, **Sector 3 Expressway** is experiencing heavy bottlenecks due to a simulated lane blockage.
+Based on current telemetry, **Connaught Place Outer Circle** is experiencing heavy bottlenecks due to a simulated lane blockage.
 
 * **Current Delay**: +18 minutes.
 * **Predicted Peak**: 17:30 - 18:45 (Commute surge).
 * **Recommended Actions**:
-  1. Trigger dynamic routing displays at Gate 4 to divert traffic through **Industrial Parkway**.
+  1. Trigger dynamic routing displays to divert traffic through **Barakhamba Road**.
   2. Adjust signal timings along the arterial loop by adding **+15 seconds** green priority.
-  3. Dispatch emergency crews to clear the minor vehicle collision at Mile 12.`;
+  3. Dispatch traffic management crews to clear the minor vehicle breakdown.`;
   }
   
   if (query.includes("flood") || query.includes("rain") || query.includes("water")) {
-    return `### 🌊 Flood Risk Analysis: Sector A & Downtown Basin
+    return `### 🌊 Flood Risk Analysis: Yamuna River & Central Basin
     
-Heavy rain simulations indicate potential overflow in low-lying zones adjacent to the primary reservoir channel.
+Heavy rain simulations indicate potential overflow in low-lying zones adjacent to the Yamuna bank channel.
 
 * **Community Risk Rating**: **CRITICAL** (87% probability of street ponding).
 * **Active Water Level**: 1.2m above standard retention threshold.
 * **Recommended Resource Allocations**:
-  1. Deploy mobile flood barriers along **River Road (Sector A)** immediately.
-  2. Activate emergency storm pump **Pump #4** to relieve pressure in the Downtown storm drainage system.
-  3. Pre-position emergency alerts to residents in **Zone B2** (low-lying residential block).`;
+  1. Deploy mobile flood barriers along **Yamuna Expressway (Sector A)** immediately.
+  2. Activate emergency storm pump **Pump #4** to relieve pressure in the low-lying storm drainage system.
+  3. Pre-position emergency alerts to residents in **Yamuna Bank** (low-lying residential block).`;
   }
 
   if (query.includes("ambulance") || query.includes("hospital") || query.includes("medical")) {
@@ -106,18 +106,18 @@ Heavy rain simulations indicate potential overflow in low-lying zones adjacent t
 Emergency response assets are currently sub-optimally distributed relative to patient congestion.
 
 * **Hospital ICU Occupancies**:
-  * *Saint Jude Medical Center*: **91% capacity** (Critical congestion).
-  * *City General Hospital*: **62% capacity** (Sufficient reserve).
-  * *Genesis Community Clinic*: **45% capacity** (Available for minor triage).
+  * *AIIMS Delhi*: **91% capacity** (Critical congestion).
+  * *Ram Manohar Lohia Hospital*: **62% capacity** (Sufficient reserve).
+  * *Safdarjung Clinic*: **45% capacity** (Available for minor triage).
 * **AI Recommended Dispatch**:
-  1. Route all incoming non-cardiac emergency transports to **City General**.
-  2. Pre-deploy ambulance units **AMB-102** and **AMB-105** to station near Sector 4 transit hub to cut response times in half.`;
+  1. Route all incoming non-cardiac emergency transports to **Ram Manohar Lohia Hospital**.
+  2. Pre-deploy ambulance units **AMB-102** and **AMB-105** to station near CP transit hub to cut response times in half.`;
   }
 
   if (query.includes("power") || query.includes("grid") || query.includes("energy")) {
     return `### ⚡ Grid Load Balancing & Energy Supply Simulation
     
-Genesis City Grid Substation 12B is operating at near-maximum capacity due to cooling load demands.
+Delhi Central Grid Substation 12B is operating at near-maximum capacity due to cooling load demands.
 
 * **Grid Load status**: **94% saturation**.
 * **Suggested Action Plan**:

@@ -156,9 +156,9 @@ export default function ReportsPage() {
         let y = 92;
         
         const recommendations = [
-          { focus: "Emergency Medical Wards", desc: "ICU bed occupancy has reached 91% at Saint Jude. Recommend redirecting non-cardiac ambulance runs to City General." },
+          { focus: "Emergency Medical Wards", desc: "ICU bed occupancy has reached 91% at AIIMS Delhi. Recommend redirecting non-cardiac ambulance runs to RML Hospital." },
           { focus: "Substation Grid Balancing", desc: "Current loading at Substation 12B stands at 94%. Recommend automated dispatch of load conservation alerts to smart thermostats." },
-          { focus: "Storm Front Water Buffer", desc: "Reservoir outflow is nearing threshold tolerances. Pre-position barriers along River Road (Sector A) and activate auxiliary pumps." }
+          { focus: "Storm Front Water Buffer", desc: "Reservoir outflow is nearing threshold tolerances. Pre-position barriers along Yamuna Expressway (Sector A) and activate auxiliary pumps." }
         ];
 
         recommendations.forEach((rec, i) => {

@@ -255,7 +255,7 @@ export default function LandingPage() {
                           <span className="text-purple-400">user:</span> Recommend ambulance deployment.
                         </div>
                         <div className="bg-purple-950/20 p-2.5 rounded border border-purple-500/25 text-neutral-200">
-                          <span className="text-cyan-400 font-bold">gemini-flash:</span> ICU occupancies indicate Saint Jude at 91% capacity. Redirect ambulance units AMB-102 and AMB-105 to City General Clinic (62%).
+                          <span className="text-cyan-400 font-bold">gemini-flash:</span> ICU occupancies indicate AIIMS Delhi at 91% capacity. Redirect ambulance units AMB-102 and AMB-105 to RML Hospital (62%).
                         </div>
                       </div>
 

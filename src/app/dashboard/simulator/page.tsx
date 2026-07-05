@@ -112,15 +112,15 @@ const SCENARIOS: Record<string, ScenarioConfig> = {
     resources: "12 Specialists, 5 Sanitizers, 2 Isolation Wards",
     color: "purple",
     actions: [
-      "Isolate affected residential block in Zone B2.",
-      "Redirect cardiac transports away from Saint Jude ICU.",
+      "Isolate affected residential block in Yamuna Bank.",
+      "Redirect cardiac transports away from AIIMS ICU.",
       "Deploy public sanitation wash channels."
     ],
     nodes: [
       { id: "1", position: { x: 50, y: 100 }, data: { label: "🧬 Airborne Pathogen Detected" }, style: { background: "#a855f7", color: "#fff", border: "1px solid #9333ea", boxShadow: "0 0 10px rgba(168, 85, 247, 0.4)" } },
       { id: "2", position: { x: 250, y: 40 }, data: { label: "🚨 Quarantine Sectors Established" }, style: { background: "#18181b", color: "#c084fc", border: "1px solid #a855f7" } },
-      { id: "3", position: { x: 250, y: 160 }, data: { label: "🏥 Saint Jude ICU Beds Full" }, style: { background: "#ef4444", color: "#fff", border: "1px solid #b91c1c" } },
-      { id: "4", position: { x: 480, y: 100 }, data: { label: "🩹 City General Diversion Active" }, style: { background: "#10b981", color: "#fff", border: "1px solid #059669" } }
+      { id: "3", position: { x: 250, y: 160 }, data: { label: "🏥 AIIMS ICU Beds Full" }, style: { background: "#ef4444", color: "#fff", border: "1px solid #b91c1c" } },
+      { id: "4", position: { x: 480, y: 100 }, data: { label: "🩹 RML Diversion Active" }, style: { background: "#10b981", color: "#fff", border: "1px solid #059669" } }
     ],
     edges: [
       { id: "e1-2", source: "1", target: "2", animated: true },

@@ -49,7 +49,7 @@ export default function SmartCityMapPage() {
   // Rescue Routing state
   const [activeRoute, setActiveRoute] = useState<{ start: [number, number], end: [number, number], color: string } | null>(null);
   const [selectedIncidentId, setSelectedIncidentId] = useState<string>("");
-  const [selectedStation, setSelectedStation] = useState<string>("Saint Jude Medical Center");
+  const [selectedStation, setSelectedStation] = useState<string>("AIIMS Delhi");
 
   useEffect(() => {
     // Subscribe to incidents database
@@ -106,10 +106,10 @@ export default function SmartCityMapPage() {
 
     // Fixed coords for dispatcher stations
     const stationCoords: Record<string, [number, number]> = {
-      "Saint Jude Medical Center": [37.7830, -122.4220],
-      "City General Hospital": [37.7610, -122.4110],
-      "Northern Division Station": [37.7920, -122.4080],
-      "Southern Triage Division": [37.7700, -122.4030]
+      "AIIMS Delhi": [28.5672, 77.2100],
+      "Ram Manohar Lohia Hospital": [28.6238, 77.2016],
+      "New Delhi Police Headquarters": [28.6272, 77.2150],
+      "Connaught Place Police Station": [28.6295, 77.2205]
     };
 
     const start = stationCoords[selectedStation];
@@ -252,10 +252,10 @@ export default function SmartCityMapPage() {
                   onChange={(e) => setSelectedStation(e.target.value)}
                   className="w-full bg-neutral-900 border border-white/10 rounded-lg py-2 px-2.5 text-xs text-white"
                 >
-                  <option value="Saint Jude Medical Center">🏥 Saint Jude Med Center (ICU)</option>
-                  <option value="City General Hospital">🏥 City General Hospital</option>
-                  <option value="Northern Division Station">🛡️ Northern Police Station</option>
-                  <option value="Southern Triage Division">🛡️ Southern Police Station</option>
+                  <option value="AIIMS Delhi">🏥 AIIMS Delhi (ICU)</option>
+                  <option value="Ram Manohar Lohia Hospital">🏥 RML Hospital</option>
+                  <option value="New Delhi Police Headquarters">🛡️ New Delhi Police HQ</option>
+                  <option value="Connaught Place Police Station">🛡️ CP Police Station</option>
                 </select>
               </div>
 

@@ -106,11 +106,11 @@ const DEFAULT_USER: UserProfile = {
 const DEFAULT_ALERTS = [
   {
     id: "alert-1",
-    title: "Flooding Hazard: River Sector A",
+    title: "Flooding Hazard: Yamuna River Sector A",
     description: "Water levels exceeded threshold by 1.2m. Local drainage operating at maximum capacity.",
     severity: "critical",
     department: "infrastructure",
-    action: "Deploy mobile barrier unit and divert Sector A traffic.",
+    action: "Deploy mobile barrier unit and divert Yamuna Expressway traffic.",
     timestamp: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // 30 mins ago
     status: "active"
   },
@@ -127,20 +127,20 @@ const DEFAULT_ALERTS = [
   {
     id: "alert-3",
     title: "Hospital Capacity Warning",
-    description: "Saint Jude Medical Center ICU occupancy reached 91%.",
+    description: "AIIMS Delhi ICU occupancy reached 91%.",
     severity: "medium",
     department: "health",
-    action: "Divert non-emergency ambulances to City General.",
+    action: "Divert non-emergency ambulances to RML Hospital.",
     timestamp: new Date(Date.now() - 1000 * 60 * 300).toISOString(), // 5 hours ago
     status: "acknowledged"
   },
   {
     id: "alert-4",
-    title: "AQI Spike: Industrial Loop",
+    title: "AQI Spike: Connaught Place Outer Circle",
     description: "PM2.5 levels detected at 154 (Unhealthy) due to low wind dispersal.",
     severity: "medium",
     department: "health",
-    action: "Issue air advisory warning for children and elderly in Zone 4.",
+    action: "Issue air advisory warning for children and elderly in Connaught Place.",
     timestamp: new Date(Date.now() - 1000 * 60 * 600).toISOString(),
     status: "acknowledged"
   }
@@ -150,31 +150,31 @@ const DEFAULT_INCIDENTS = [
   {
     id: "inc-1",
     title: "Minor Road Collapse",
-    description: "Water pipe burst caused minor sinkhole on Elm Street.",
+    description: "Water pipe burst caused minor sinkhole near Gol Dak Khana.",
     severity: "medium",
     status: "acknowledged",
     department: "traffic",
-    coordinates: [37.7749, -122.4194] as [number, number],
+    coordinates: [28.6220, 77.2100] as [number, number],
     timestamp: new Date().toISOString()
   },
   {
     id: "inc-2",
     title: "Critical Power Failure",
-    description: "High winds downed utility poles near High Street.",
+    description: "High winds downed utility poles near Mandi House.",
     severity: "critical",
     status: "active",
     department: "infrastructure",
-    coordinates: [37.7801, -122.4120] as [number, number],
+    coordinates: [28.6280, 77.2350] as [number, number],
     timestamp: new Date().toISOString()
   },
   {
     id: "inc-3",
     title: "Water Contamination Alert",
-    description: "High turbidity detected in reservoir outflow outlet.",
+    description: "High turbidity detected in Yamuna outflow canal.",
     severity: "high",
     status: "active",
     department: "infrastructure",
-    coordinates: [37.7650, -122.4250] as [number, number],
+    coordinates: [28.6150, 77.2500] as [number, number],
     timestamp: new Date().toISOString()
   }
 ];
@@ -182,6 +182,27 @@ const DEFAULT_INCIDENTS = [
 // Initialize localStorage seed
 const initMockDatabase = () => {
   if (typeof window === "undefined") return;
+  
+  // Force reset if existing seed uses San Francisco coordinates (longitude < 0)
+  let forceReset = false;
+  try {
+    const existing = localStorage.getItem("genesis_incidents");
+    if (existing) {
+      const parsed = JSON.parse(existing);
+      if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].coordinates && parsed[0].coordinates[1] < 0) {
+        forceReset = true;
+      }
+    }
+  } catch (e) {
+    console.error("Migration error check failed:", e);
+  }
+
+  if (forceReset) {
+    localStorage.removeItem("genesis_users");
+    localStorage.removeItem("genesis_alerts");
+    localStorage.removeItem("genesis_incidents");
+  }
+
   if (!localStorage.getItem("genesis_users")) {
     localStorage.setItem("genesis_users", JSON.stringify({ [DEFAULT_USER.uid]: DEFAULT_USER }));
   }

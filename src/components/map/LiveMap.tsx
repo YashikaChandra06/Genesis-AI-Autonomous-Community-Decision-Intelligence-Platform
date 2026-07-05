@@ -21,21 +21,21 @@ interface LiveMapProps {
 // Fixed coordinates for municipal assets in Genesis City
 const CITY_ASSETS = {
   hospitals: [
-    { name: "Saint Jude Medical Center", coords: [37.7830, -122.4220] as [number, number], beds: "9% Available" },
-    { name: "City General Hospital", coords: [37.7610, -122.4110] as [number, number], beds: "38% Available" },
-    { name: "Westside Triage Center", coords: [37.7520, -122.4380] as [number, number], beds: "55% Available" }
+    { name: "AIIMS Delhi", coords: [28.5672, 77.2100] as [number, number], beds: "9% Available" },
+    { name: "Ram Manohar Lohia Hospital", coords: [28.6238, 77.2016] as [number, number], beds: "38% Available" },
+    { name: "Safdarjung Hospital", coords: [28.5685, 77.2060] as [number, number], beds: "55% Available" }
   ],
   police: [
-    { name: "Northern Division Station", coords: [37.7920, -122.4080] as [number, number], officers: "14 On-Duty" },
-    { name: "Southern Triage Division", coords: [37.7700, -122.4030] as [number, number], officers: "22 On-Duty" }
+    { name: "New Delhi Police Headquarters", coords: [28.6272, 77.2150] as [number, number], officers: "14 On-Duty" },
+    { name: "Connaught Place Police Station", coords: [28.6295, 77.2205] as [number, number], officers: "22 On-Duty" }
   ],
   shelters: [
-    { name: "Downtown Refuge Shelter", coords: [37.7780, -122.4150] as [number, number], capacity: "84% Occupied" },
-    { name: "Bayview Flood Haven", coords: [37.7450, -122.3950] as [number, number], capacity: "12% Occupied" }
+    { name: "India Gate Refuge Shelter", coords: [28.6129, 77.2295] as [number, number], capacity: "84% Occupied" },
+    { name: "Yamuna Bank Flood Haven", coords: [28.6210, 77.2660] as [number, number], capacity: "12% Occupied" }
   ],
   riskZones: [
-    { name: "River Sector A Flood Basin", coords: [37.7749, -122.4194] as [number, number], radius: 600, risk: "High Flood Risk" },
-    { name: "Industrial Loop Congestion Zone", coords: [37.7650, -122.4010] as [number, number], radius: 450, risk: "AQI Saturation" }
+    { name: "Yamuna River Sector A Flood Basin", coords: [28.6260, 77.2720] as [number, number], radius: 800, risk: "High Flood Risk" },
+    { name: "Connaught Place Outer Circle Zone", coords: [28.6320, 77.2180] as [number, number], radius: 500, risk: "AQI Saturation" }
   ]
 };
 
@@ -56,9 +56,9 @@ export default function LiveMap({
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
-    // Center on Genesis City (San Francisco bounding coordinates)
+    // Center on Genesis City (Delhi bounding coordinates)
     const map = L.map(mapContainerRef.current, {
-      center: [37.7749, -122.4194],
+      center: [28.6250, 77.2200],
       zoom: 13,
       zoomControl: false
     });

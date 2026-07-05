@@ -53,9 +53,9 @@ const CHART_POLLUTION_DATA = [
 ];
 
 const CHART_HOSPITAL_DATA = [
-  { name: "Saint Jude ICU", occupancy: 91, available: 9 },
-  { name: "City General", occupancy: 62, available: 38 },
-  { name: "Westside Triage", occupancy: 45, available: 55 },
+  { name: "AIIMS ICU", occupancy: 91, available: 9 },
+  { name: "RML Hospital", occupancy: 62, available: 38 },
+  { name: "Safdarjung Clinic", occupancy: 45, available: 55 },
 ];
 
 export default function DashboardOverviewPage() {
@@ -387,8 +387,8 @@ export default function DashboardOverviewPage() {
               <div className="flex items-start space-x-2 border-b border-white/5 pb-2.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
                 <div className="text-left text-neutral-300">
-                  <div className="font-semibold text-white">Ambulances Dispatched (City Gen.)</div>
-                  <div className="text-neutral-500">ICU Divert protocol activated at Saint Jude.</div>
+                  <div className="font-semibold text-white">Ambulances Dispatched (RML Hosp.)</div>
+                  <div className="text-neutral-500">ICU Divert protocol activated at AIIMS Delhi.</div>
                 </div>
               </div>
               <div className="flex items-start space-x-2 border-b border-white/5 pb-2.5">
