@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { 
   Cpu, 
@@ -13,6 +14,16 @@ import {
   Users
 } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
+
+const LiveMapPreview = dynamic(() => import("@/components/map/LiveMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-[#0d0d12] border border-white/5 rounded-xl flex flex-col items-center justify-center space-y-3 min-h-[400px]">
+      <div className="w-8 h-8 rounded-full border-2 border-purple-500 border-t-transparent animate-spin" />
+      <span className="text-xs font-mono text-neutral-500">Loading Geospatial Layout...</span>
+    </div>
+  )
+});
 
 export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("map");
@@ -373,49 +384,86 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Deployment & Setup details */}
+      {/* Live Indian Map Preview Section */}
       <section id="platform" className="max-w-7xl mx-auto px-6 md:px-12 py-16 relative z-10 border-t border-white/5 bg-white/[0.01]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl font-extrabold tracking-tight">Zero-Setup Server Deployment</h2>
+            <h2 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">Live Indian Map Telemetry</h2>
             <p className="text-neutral-400 text-sm md:text-base leading-relaxed">
-              Genesis AI is configured for quick production deployment directly to Render. The platform builds as a single self-contained project with built-in sandbox fallbacks for database APIs and Gemini engines when credentials aren&apos;t loaded.
+              Genesis AI incorporates active geospatial mapping of Delhi, India. Planners can monitor real-time incident warning cascades, simulate optimal dispatch paths, and visualize critical municipal assets on a unified GIS overlay.
             </p>
             <ul className="space-y-3 font-medium text-xs text-neutral-300">
               <li className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                <span>Next.js 15 App Router Route Handlers for API endpoints.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                <span>Delhi-centered Leaflet GIS mapping featuring live coordinate pinning.</span>
               </li>
               <li className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                <span>Render web service container layout support (`render.yaml`).</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                <span>Simulate emergency ambulance route optimizations from AIIMS Delhi and RML Hospital.</span>
               </li>
               <li className="flex items-center space-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                <span>Graceful LocalStorage database replication wrapper.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
+                <span>Interactive danger circles illustrating active Yamuna River overflow and air pollution risk.</span>
               </li>
             </ul>
+            <div className="pt-2">
+              <Link href="/login" className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-lg shadow-purple-500/20 transition-all hover:translate-y-[-1px]">
+                <span>Launch Geospatial Command Console</span>
+                <ChevronRight className="w-3.5 h-3.5 animate-pulse" />
+              </Link>
+            </div>
           </div>
           
-          <GlassCard className="font-mono text-xs p-6 bg-black/45 border border-white/5 text-purple-300 space-y-4">
-            <div className="flex justify-between text-neutral-500 border-b border-white/5 pb-2 text-[10px]">
-              <span>SETUP CONFIGURATION (render.yaml)</span>
-              <span>YAML</span>
-            </div>
-            <pre className="text-neutral-400 overflow-x-auto whitespace-pre-wrap select-all">
-{`services:
-  - type: web
-    name: genesis-ai
-    env: node
-    buildCommand: npm install && npm run build
-    startCommand: npm start
-    envVars:
-      - key: GEMINI_API_KEY
-        sync: false
-      - key: NEXT_PUBLIC_FIREBASE_API_KEY
-        sync: false`}
-            </pre>
-          </GlassCard>
+          <div className="h-[400px] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+            <LiveMapPreview
+              incidents={[
+                {
+                  id: "inc-1",
+                  title: "Minor Road Collapse",
+                  description: "Water pipe burst caused minor sinkhole near Gol Dak Khana.",
+                  severity: "medium",
+                  status: "acknowledged",
+                  department: "traffic",
+                  coordinates: [28.6220, 77.2100],
+                  timestamp: new Date().toISOString()
+                },
+                {
+                  id: "inc-2",
+                  title: "Critical Power Failure",
+                  description: "High winds downed utility poles near Mandi House.",
+                  severity: "critical",
+                  status: "active",
+                  department: "infrastructure",
+                  coordinates: [28.6280, 77.2350],
+                  timestamp: new Date().toISOString()
+                },
+                {
+                  id: "inc-3",
+                  title: "Water Contamination Alert",
+                  description: "High turbidity detected in Yamuna outflow canal.",
+                  severity: "high",
+                  status: "active",
+                  department: "infrastructure",
+                  coordinates: [28.6150, 77.2500],
+                  timestamp: new Date().toISOString()
+                }
+              ]}
+              filters={{
+                incidents: true,
+                hospitals: true,
+                police: true,
+                shelters: true,
+                riskZones: true
+              }}
+              searchQuery=""
+              onAddIncidentClick={() => {}}
+              activeIncidentRoute={{
+                start: [28.5672, 77.2100],
+                end: [28.6220, 77.2100],
+                color: "#06b6d4"
+              }}
+            />
+          </div>
         </div>
       </section>
 
