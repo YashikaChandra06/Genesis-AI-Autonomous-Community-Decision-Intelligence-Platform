@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: genesis-ai
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+        description: "Google Gemini Developer API Key. Falls back to mock intelligence reports if not set."
+      - key: NEXT_PUBLIC_FIREBASE_API_KEY
+        sync: false
+        description: "Firebase Web SDK API Key. Falls back to LocalStorage persist mode if not set."
+      - key: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_APP_ID
+        sync: false
